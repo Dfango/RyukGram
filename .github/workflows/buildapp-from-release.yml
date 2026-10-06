@@ -185,7 +185,7 @@ jobs:
                 Instagram_URL: ${{ inputs.decrypted_instagram_url }}
               run: |
                 set -euo pipefail
-                wget "$Instagram_URL" --no-verbose -O packages/com.burbn.instagram.ipa
+                wget --user-agent="Mozilla/5.0" "$Instagram_URL" --no-verbose -O packages/com.burbn.instagram.ipa
 
                 # The IPA is user-supplied, so its version can differ from the deb's.
                 PLIST="$(unzip -Z1 packages/com.burbn.instagram.ipa 'Payload/*.app/Info.plist' 2>/dev/null | awk -F/ 'NF==3' | head -1 || true)"
